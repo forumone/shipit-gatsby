@@ -9,6 +9,7 @@ const ApplicationForm = () => (
             <h2>Join our Team</h2>
             Your Name: <input type="text" name="name" />  &nbsp;
             Your Email: <input type="email" name="email" />
+            <input type="hidden" name="form-name" value="application-form" />
             <button type="submit">Send</button>
         </form>
     </Container>
