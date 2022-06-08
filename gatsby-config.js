@@ -36,7 +36,7 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: "Fauxum One Team",
+    title: "Fauxrum One Team",
     description: "Our Team here at Forum One",
   },
   plugins: [
