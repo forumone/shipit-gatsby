@@ -1,5 +1,8 @@
 import { action } from "@storybook/addon-actions"
 
+import '../src/components/variables.css'
+import '../src/components/global.css'
+
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
 // This global object isn't set in storybook context, requiring you to override it to empty functions (no-op),

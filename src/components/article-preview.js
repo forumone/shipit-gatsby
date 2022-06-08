@@ -1,10 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
 import Container from './container'
-import Tags from './tags'
 import * as styles from './article-preview.module.css'
 
 const ArticlePreview = ({ posts }) => {
@@ -20,7 +18,7 @@ const ArticlePreview = ({ posts }) => {
               <Link to={`/team/${post.slug}`} className={styles.link}>
                 <GatsbyImage alt="" image={post.photo?.gatsbyImageData}/>
                 <h2 className={styles.title}>{post.firstName} {post.lastName}</h2>
-                <div>
+                <div className={'job-title'}>
                   {post.jobTitle}
                 </div>
               </Link>

@@ -20,6 +20,7 @@ class EmployeePost extends React.Component {
       JSON.parse(post.biography.raw)
     )
     const heading = post.firstName +' '+ post.lastName
+    const jobtitle = post.jobTitle
     const plainTextBody = documentToPlainTextString(JSON.parse(post.biography.raw))
     const { minutes: timeToRead } = readingTime(plainTextBody)
 
@@ -28,24 +29,39 @@ class EmployeePost extends React.Component {
         <Seo
           title={post.title}
           biography={plainTextDescription}
-          image={`http:${post.photo?.resize.src}`}
+          image={`http:${post.photo2?.resize.src}`}
         />
         <Hero
-          image={post.photo?.gatsbyImageData}
+          image={post.photo2?.gatsbyImageData}
           title={heading}
           content={post.title}
         />
         <div className={styles.container}>
           <span className={styles.meta}>
-            {post.author?.name} &middot;{' '}
-            <time dateTime={post.rawDate}>{post.publishDate}</time> –{' '}
-            {timeToRead} minute read
+            {post.jobTitle}
           </span>
           <div className={styles.article}>
             <div className={styles.body}>
               {post.biography?.raw && renderRichText(post.biography)}
             </div>
-            <Tags tags={post.favoriteIssues} />
+            {post.favoriteIssues && (
+                <>
+                <h2>Favorite Issues:</h2>
+                <Tags tags={post.favoriteIssues} />
+                </>
+                )}
+            {post.surprisingFacts && (
+                <>
+                <h2>It may surprise you:</h2>
+                <Tags tags={post.surprisingFacts} />
+                </>
+                )}
+            {post.cantLiveWithout && (
+                <>
+                <h2>Can't live without:</h2>
+                <Tags tags={post.cantLiveWithout} />
+                </>
+            )}
             {(previous || next) && (
               <nav>
                 <ul className={styles.articleNavigation}>
@@ -92,10 +108,18 @@ export const pageQuery = graphql`
           src
         }
       }
+      photo2 {
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
+        resize(height: 630, width: 1200) {
+          src
+        }
+      }
       biography {
         raw
       }
       favoriteIssues
+      surprisingFacts
+      cantLiveWithout
       
     }
     previous: contentfulEmployee(slug: { eq: $previousEmpPostSlug }) {
