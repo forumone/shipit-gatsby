@@ -8,7 +8,7 @@ import ArticlePreview from '../components/article-preview'
 
 class RootIndex extends React.Component {
   render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
+    const posts = get(this, 'props.data.allContentfulEmployee.nodes')
     const [author] = get(this, 'props.data.allContentfulPerson.nodes')
 
     return (
@@ -44,6 +44,22 @@ export const pageQuery = graphql`
         }
         description {
           raw
+        }
+      }
+    }
+    allContentfulEmployee(sort: {order: ASC, fields: firstName}) {
+      nodes {
+        firstName
+        lastName
+        jobTitle
+        photo {
+          url
+          gatsbyImageData(
+            height: 212
+            width: 424
+            layout: FULL_WIDTH
+            placeholder: BLURRED
+          )
         }
       }
     }
