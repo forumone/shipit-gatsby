@@ -19,6 +19,7 @@ class EmployeePost extends React.Component {
     const plainTextDescription = documentToPlainTextString(
       JSON.parse(post.biography.raw)
     )
+    const heading = post.firstName +' '+ post.lastName
     const plainTextBody = documentToPlainTextString(JSON.parse(post.biography.raw))
     const { minutes: timeToRead } = readingTime(plainTextBody)
 
@@ -31,8 +32,8 @@ class EmployeePost extends React.Component {
         />
         <Hero
           image={post.photo?.gatsbyImageData}
-          title={post.title}
-          content={post.biography}
+          title={heading}
+          content={post.title}
         />
         <div className={styles.container}>
           <span className={styles.meta}>
@@ -44,20 +45,20 @@ class EmployeePost extends React.Component {
             <div className={styles.body}>
               {post.biography?.raw && renderRichText(post.biography)}
             </div>
-            <Tags tags={post.tags} />
+            <Tags tags={post.favoriteIssues} />
             {(previous || next) && (
               <nav>
                 <ul className={styles.articleNavigation}>
                   {previous && (
                     <li>
-                      <Link to={`/blog/${previous.slug}`} rel="prev">
+                      <Link to={`/team/${previous.slug}`} rel="prev">
                         ← {previous.title}
                       </Link>
                     </li>
                   )}
                   {next && (
                     <li>
-                      <Link to={`/blog/${next.slug}`} rel="next">
+                      <Link to={`/team/${next.slug}`} rel="next">
                         {next.title} →
                       </Link>
                     </li>
@@ -83,6 +84,8 @@ export const pageQuery = graphql`
     contentfulEmployee(slug: { eq: $slug }) {
       slug
       jobTitle
+      firstName
+      lastName
       photo {
         gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, width: 1280)
         resize(height: 630, width: 1200) {
@@ -92,6 +95,8 @@ export const pageQuery = graphql`
       biography {
         raw
       }
+      favoriteIssues
+      
     }
     previous: contentfulEmployee(slug: { eq: $previousEmpPostSlug }) {
       slug
