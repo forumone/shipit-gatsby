@@ -17,17 +17,13 @@ const ArticlePreview = ({ posts }) => {
         {posts.map((post) => {
           return (
             <li key={post.slug}>
-              <Link to={`/blog/${post.slug}`} className={styles.link}>
-                <GatsbyImage alt="" image={post.heroImage.gatsbyImageData} />
-                <h2 className={styles.title}>{post.title}</h2>
+              <Link to={`/team/${post.slug}`} className={styles.link}>
+                <GatsbyImage alt="" image={post.photo?.gatsbyImageData}/>
+                <h2 className={styles.title}>{post.firstName} {post.lastName}</h2>
+                <div>
+                  {post.jobTitle}
+                </div>
               </Link>
-              <div>
-                {post.description?.raw && renderRichText(post.description)}
-              </div>
-              <div className={styles.meta}>
-                <small className="meta">{post.publishDate}</small>
-                <Tags tags={post.tags} />
-              </div>
             </li>
           )
         })}

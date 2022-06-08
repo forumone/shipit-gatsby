@@ -6,17 +6,18 @@ import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
+const heroTitle = 'Our Team';
+// const heroContent = 'Forum One has deep and wide-reaching digital and sector-wide expertise, which we use to identify the best solutions for mission-driven organizations.';
+
 class RootIndex extends React.Component {
   render() {
-    const posts = get(this, 'props.data.allContentfulBlogPost.nodes')
+    const posts = get(this, 'props.data.allContentfulEmployee.nodes')
     const [author] = get(this, 'props.data.allContentfulPerson.nodes')
 
     return (
       <Layout location={this.props.location}>
         <Hero
-          image={author.heroImage.gatsbyImageData}
-          title={author.name}
-          content={author.shortBio}
+          title={heroTitle}
         />
         <ArticlePreview posts={posts} />
       </Layout>
@@ -44,6 +45,27 @@ export const pageQuery = graphql`
         }
         description {
           raw
+        }
+      }
+    }
+    allContentfulEmployee(sort: {order: ASC, fields: firstName}) {
+      nodes {
+        firstName
+        lastName
+        jobTitle
+        photo {
+          url
+          gatsbyImageData(
+            height: 424
+            width: 424
+            layout: FULL_WIDTH
+            placeholder: BLURRED
+          )
+        }
+        slug
+        title
+        department {
+          id
         }
       }
     }
