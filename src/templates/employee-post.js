@@ -11,28 +11,28 @@ import Hero from '../components/hero'
 import Tags from '../components/tags'
 import * as styles from './blog-post.module.css'
 
-class EmployeePostTemplate extends React.Component {
+class EmployeePost extends React.Component {
   render() {
     const post = get(this.props, 'data.contentfulEmployee')
     const previous = get(this.props, 'data.previous')
     const next = get(this.props, 'data.next')
     const plainTextDescription = documentToPlainTextString(
-      JSON.parse(post.description.raw)
+      JSON.parse(post.biography.raw)
     )
-    const plainTextBody = documentToPlainTextString(JSON.parse(post.body.raw))
+    const plainTextBody = documentToPlainTextString(JSON.parse(post.biography.raw))
     const { minutes: timeToRead } = readingTime(plainTextBody)
 
     return (
       <Layout location={this.props.location}>
         <Seo
           title={post.title}
-          description={plainTextDescription}
-          image={`http:${post.heroImage.resize.src}`}
+          biography={plainTextDescription}
+          image={`http:${post.photo.resize.src}`}
         />
         <Hero
           image={post.photo?.gatsbyImageData}
           title={post.title}
-          content={post.description}
+          content={post.biography}
         />
         <div className={styles.container}>
           <span className={styles.meta}>
@@ -72,10 +72,10 @@ class EmployeePostTemplate extends React.Component {
   }
 }
 
-export default EmployeePostTemplate
+export default EmployeePost
 
 export const pageQuery = graphql`
-  query EmployeePostBySlug(
+  query EmployeeBySlug(
     $slug: String!
     $previousEmpPostSlug: String
     $nextEmpPostSlug: String

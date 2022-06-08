@@ -4,12 +4,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Define a template for blog post
-  const blogPost = path.resolve('./src/templates/blog-post.js')
+ // const blogPost = path.resolve('./src/templates/blog-post.js')
   const employeePost = path.resolve('./src/templates/employee-post.js')
   const result = await graphql(
     `
       {
-        allContentfulBlogPost {
+        allContentfulEmployee {
           nodes {
             title
             slug
@@ -27,40 +27,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allContentfulBlogPost.nodes
-
-  // Create blog posts pages
-  // But only if there's at least one blog post found in Contentful
-  // `context` is available in the template as a prop and as a variable in GraphQL
-
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostSlug = index === 0 ? null : posts[index - 1].slug
-      const nextPostSlug =
-        index === posts.length - 1 ? null : posts[index + 1].slug
-
-      createPage({
-        path: `/blog/${post.slug}/`,
-        component: blogPost,
-        context: {
-          slug: post.slug,
-          previousPostSlug,
-          nextPostSlug,
-        },
-      })
-    })
-  }
-  const employeeposts = result.data.allContentfulBlogPost.nodes
+  const posts = result.data.allContentfulEmployee.nodes
 
   // Create employee posts pages
   // But only if there's at least one employee post found in Contentful
   // `context` is available in the template as a prop and as a variable in GraphQL
 
-  if (employeeposts.length > 0) {
-    employeeposts.forEach((post, index) => {
-      const previousEmpPostSlug = index === 0 ? null : employeeposts[index - 1].slug
+  if (posts.length > 0) {
+    posts.forEach((post, index) => {
+      const previousEmpPostSlug = index === 0 ? null : posts[index - 1].slug
       const nextEmpPostSlug =
-          index === employeeposts.length - 1 ? null : employeeposts[index + 1].slug
+          index === posts.length - 1 ? null : posts[index + 1].slug
 
       createPage({
         path: `/team/${post.slug}/`,
