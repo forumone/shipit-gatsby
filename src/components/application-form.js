@@ -5,10 +5,10 @@ import * as styles from './application-form.module.css'
 
 const ApplicationForm = () => (
     <Container as="div">
-        <form name="applicationForm" method="POST" netlify className={styles.container}>
+        <form name="application-form" method="POST" netlify className={styles.container}>
             <h2>Join our Team</h2>
-            <label>Your Name: <input type="text" name="name" /></label>
-            <label>Your Email: <input type="email" name="email" /></label>
+            Your Name: <input type="text" name="name" />  &nbsp;
+            Your Email: <input type="email" name="email" />
             <button type="submit">Send</button>
         </form>
     </Container>
