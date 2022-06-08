@@ -5,7 +5,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Define a template for blog post
   const blogPost = path.resolve('./src/templates/blog-post.js')
-
+  const employeePost = path.resolve('./src/templates/employee-post.js')
   const result = await graphql(
     `
       {
@@ -50,4 +50,28 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+  const employeeposts = result.data.allContentfulBlogPost.nodes
+
+  // Create employee posts pages
+  // But only if there's at least one employee post found in Contentful
+  // `context` is available in the template as a prop and as a variable in GraphQL
+
+  if (employeeposts.length > 0) {
+    employeeposts.forEach((post, index) => {
+      const previousEmpPostSlug = index === 0 ? null : employeeposts[index - 1].slug
+      const nextEmpPostSlug =
+          index === employeeposts.length - 1 ? null : employeeposts[index + 1].slug
+
+      createPage({
+        path: `/team/${post.slug}/`,
+        component: employeePost,
+        context: {
+          slug: post.slug,
+          previousEmpPostSlug,
+          nextEmpPostSlug,
+        },
+      })
+    })
+  }
+
 }
