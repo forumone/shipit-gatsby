@@ -28,7 +28,7 @@ class EmployeePost extends React.Component {
         <Seo
           title={post.title}
           biography={plainTextDescription}
-          image={`http:${post.photo.resize.src}`}
+          image={`http:${post.photo?.resize.src}`}
         />
         <Hero
           image={post.photo?.gatsbyImageData}
