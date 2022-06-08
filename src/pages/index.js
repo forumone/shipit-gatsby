@@ -6,6 +6,9 @@ import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
+const heroTitle = 'Our Team';
+// const heroContent = 'Forum One has deep and wide-reaching digital and sector-wide expertise, which we use to identify the best solutions for mission-driven organizations.';
+
 class RootIndex extends React.Component {
   render() {
     const posts = get(this, 'props.data.allContentfulEmployee.nodes')
@@ -14,9 +17,7 @@ class RootIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <Hero
-          image={author.heroImage.gatsbyImageData}
-          title={author.name}
-          content={author.shortBio}
+          title={heroTitle}
         />
         <ArticlePreview posts={posts} />
       </Layout>
@@ -55,11 +56,16 @@ export const pageQuery = graphql`
         photo {
           url
           gatsbyImageData(
-            height: 212
+            height: 424
             width: 424
             layout: FULL_WIDTH
             placeholder: BLURRED
           )
+        }
+        slug
+        title
+        department {
+          id
         }
       }
     }
