@@ -36,8 +36,8 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Contentful Starter",
-    description: "Official Contentful Gatsby Starter",
+    title: "Fauxum One Team",
+    description: "Our Team here at Forum One",
   },
   plugins: [
     "gatsby-transformer-sharp",
