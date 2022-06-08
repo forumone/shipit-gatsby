@@ -5,6 +5,7 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
+import ApplicationForm from '../components/application-form'
 
 const heroTitle = 'Our Team';
 // const heroContent = 'Forum One has deep and wide-reaching digital and sector-wide expertise, which we use to identify the best solutions for mission-driven organizations.';
@@ -20,6 +21,7 @@ class RootIndex extends React.Component {
           title={heroTitle}
         />
         <ArticlePreview posts={posts} />
+        <ApplicationForm />
       </Layout>
     )
   }
