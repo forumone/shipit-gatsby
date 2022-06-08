@@ -1,0 +1,5 @@
+.description {
+    font-size: var(--text-lead);
+    font-weight: var(--semibold);
+    margin: 0;
+}
