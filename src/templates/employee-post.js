@@ -44,12 +44,24 @@ class EmployeePost extends React.Component {
             <div className={styles.body}>
               {post.biography?.raw && renderRichText(post.biography)}
             </div>
-              <h2>Favorite Issues:</h2>
+            {post.favoriteIssues && (
+                <>
+                <h2>Favorite Issues:</h2>
                 <Tags tags={post.favoriteIssues} />
-              <h2>It may surprise you:</h2>
+                </>
+                )}
+            {post.surprisingFacts && (
+                <>
+                <h2>It may surprise you:</h2>
                 <Tags tags={post.surprisingFacts} />
-              <h2>Can't live without:</h2>
+                </>
+                )}
+            {post.cantLiveWithout && (
+                <>
+                <h2>Can't live without:</h2>
                 <Tags tags={post.cantLiveWithout} />
+                </>
+            )}
             {(previous || next) && (
               <nav>
                 <ul className={styles.articleNavigation}>
