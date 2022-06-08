@@ -95,11 +95,11 @@ export const pageQuery = graphql`
     }
     previous: contentfulEmployee(slug: { eq: $previousEmpPostSlug }) {
       slug
-      jobTitle
+      title
     }
     next: contentfulEmployee(slug: { eq: $nextEmpPostSlug }) {
       slug
-      jobTitle
+      title
     }
   }
 `
