@@ -5,6 +5,7 @@ import get from 'lodash/get'
 import Layout from '../components/layout'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
+import ApplicationForm from '../components/application-form'
 import Container from "../components/container";
 
 import * as styles from './index.module.css';
@@ -27,6 +28,7 @@ class RootIndex extends React.Component {
           </div>
         </Container>
         <ArticlePreview posts={posts} />
+        <ApplicationForm />
       </Layout>
     )
   }
