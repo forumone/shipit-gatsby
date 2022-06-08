@@ -39,7 +39,7 @@ export default RootIndex
 export const pageQuery = graphql`
   query HomeQuery {
     allContentfulEmployee(
-        sort: {order: ASC, fields: firstName}
+        sort: {order: ASC, fields: lastName}
     ) {
       nodes {
         firstName
